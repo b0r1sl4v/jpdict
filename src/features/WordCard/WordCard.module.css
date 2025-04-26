@@ -1,0 +1,10 @@
+.card {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.definition {
+  width: 70%;
+}

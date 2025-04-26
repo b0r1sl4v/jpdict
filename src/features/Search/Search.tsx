@@ -1,14 +1,20 @@
 import { FC, useState } from 'react';
 
 import { SearchView } from './ui/SearchView';
-import { useGetWords } from './api/useGetWords';
+import { fetchWordsFx } from '../WordCard';
 
 export const Search: FC = () => {
   const [value, setValue] = useState('');
 
   const onButtonClick = () => {
-    const { data, error, isLoading } = useGetWords(value)
-  }
+    fetchWordsFx(value);
+  };
 
-  return <SearchView inputValue={value} setInputValue={setValue} onButtonClick={} />;
+  return (
+    <SearchView
+      inputValue={value}
+      setInputValue={setValue}
+      onButtonClick={onButtonClick}
+    />
+  );
 };
