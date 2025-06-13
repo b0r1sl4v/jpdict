@@ -1,10 +1,29 @@
 .card {
-  width: 60%;
   display: flex;
-  align-items: center;
   gap: 30px;
+  padding: 20px;
+}
+
+.main_info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+}
+
+.markers,
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.markers {
+  list-style-type: none;
 }
 
 .definition {
-  width: 70%;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
 }

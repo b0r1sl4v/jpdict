@@ -25,5 +25,10 @@ export const fetchWordsFx = createEffect<
 });
 
 $words.on(fetchWordsFx.doneData, (_, data) => {
-  return data?.words;
+  return data?.words?.map((word) => {
+    if (typeof word.def == 'string') {
+      word.def = [word.def];
+    }
+    return word;
+  });
 });

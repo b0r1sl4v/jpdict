@@ -3,3 +3,8 @@ body {
   height: 100vh;
   margin: 0;
 }
+
+ul,
+ol {
+  padding: 0;
+}
