@@ -1,8 +1,9 @@
-import { Card, Label, Text } from '@gravity-ui/uikit';
+import { Label, Text } from '@gravity-ui/uikit';
 import { FC } from 'react';
 
 import styles from './WordCard.module.css';
 import { Word } from './model';
+import { Card } from '@/shared/ui/Card';
 
 type WordCardViewProps = Word;
 

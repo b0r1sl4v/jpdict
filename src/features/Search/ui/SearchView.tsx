@@ -1,5 +1,5 @@
 import { Button, TextInput } from '@gravity-ui/uikit';
-import { Dispatch, FC, MouseEventHandler, SetStateAction } from 'react';
+import { Dispatch, FC, MouseEventHandler, SetStateAction, useRef } from 'react';
 
 import styles from './SearchView.module.css';
 
@@ -11,6 +11,7 @@ type SearchViewProps = {
 
 export const SearchView: FC<SearchViewProps> = (props) => {
   const { inputValue, setInputValue, onButtonClick } = props;
+  const button = useRef<HTMLButtonElement>(null);
 
   return (
     <div className={styles.search}>
@@ -21,9 +22,14 @@ export const SearchView: FC<SearchViewProps> = (props) => {
           onChange={(e) => {
             setInputValue(e.target.value);
           }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              button.current?.click();
+            }
+          }}
         />
       </div>
-      <Button view="action" onClick={onButtonClick}>
+      <Button view="action" ref={button} onClick={onButtonClick}>
         Search
       </Button>
     </div>
