@@ -1,16 +1,17 @@
 'use client';
 
 import { Search } from '@/features/Search';
-import { $words, WordCard } from '@/features/WordCard';
+import { $words, fetchWordsFx, WordCard } from '@/features/WordCard';
 import { CardList } from '@/shared/ui/CardList';
-import { useList } from 'effector-react';
+import { useList, useUnit } from 'effector-react';
 
-import style from './page.module.css';
-import { useState } from 'react';
+import styles from './page.module.css';
+import { $kanji, fetchKanjiFx } from '@/features/KanjiCard/model';
+import { KanjiCard } from '@/features/KanjiCard/KanjiCard';
 
 export default function Home() {
-  $words.watch((words) => console.log(words));
-  const [wordsLoading, setWordsLoading] = useState(false);
+  const wordsPending = useUnit(fetchWordsFx.pending);
+  const kanjiPending = useUnit(fetchKanjiFx.pending);
 
   const words = useList($words, (word, key) => (
     <li>
@@ -18,14 +19,23 @@ export default function Home() {
     </li>
   ));
 
+  const kanji = useList($kanji, (kanji, key) => (
+    <li>
+      <KanjiCard key={key} {...kanji} />
+    </li>
+  ));
+
   return (
-    <div className={style.page}>
-      <Search setWordsLoading={setWordsLoading} />
-      {$words && (
-        <CardList loading={wordsLoading} listHeight={800} listWidth={1000}>
+    <div className={styles.page}>
+      <Search />
+      <div className={styles.lists}>
+        <CardList loading={wordsPending} listHeight={800} listWidth={1000}>
           {words}
         </CardList>
-      )}
+        <CardList loading={kanjiPending} listHeight={800} listWidth={600}>
+          {kanji}
+        </CardList>
+      </div>
     </div>
   );
 }

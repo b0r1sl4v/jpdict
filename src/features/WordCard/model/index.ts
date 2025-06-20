@@ -9,20 +9,14 @@ export type Word = Pick<
 
 export const $words = createStore<Word[]>([]);
 
-export const fetchWordsFx = createEffect<
-  (value: string) => Promise<WordsResponse | undefined>
->(async (value) => {
-  const { data, error } = await fetchWords(value);
-  if (error || !data) {
-    console.log(error);
-    return;
-  }
-  if (!data?.words) {
-    console.log('no result');
-    return;
-  }
-  return data;
+type FetchWordsFX = (value: string) => Promise<WordsResponse | undefined>;
+export const fetchWordsFx = createEffect<FetchWordsFX>(async (value) => {
+  return await fetchWords(value);
 });
+
+fetchWordsFx.fail.watch(({ params, error }) =>
+  console.error(`Failed to fetch ${params}:`, error),
+);
 
 $words.on(fetchWordsFx.doneData, (_, data) => {
   return data?.words?.map((word) => {

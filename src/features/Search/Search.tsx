@@ -1,26 +1,16 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { SearchView } from './ui/SearchView';
 import { fetchWordsFx } from '../WordCard';
+import { fetchKanjiFx } from '../KanjiCard/model';
 
-type SearchProps = {
-  setWordsLoading: Dispatch<SetStateAction<boolean>>;
-};
-
-export const Search: FC<SearchProps> = (props) => {
-  const { setWordsLoading } = props;
+export const Search: FC = (props) => {
   const [value, setValue] = useState('');
 
   const onButtonClick = () => {
-    setWordsLoading(true);
-    fetchWordsFx(value)
-      .finally(() => {
-        setWordsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setWordsLoading(false);
-      });
+    Promise.all([fetchWordsFx(value), fetchKanjiFx(value)]).catch((error) => {
+      console.log(error);
+    });
   };
 
   return (

@@ -17,7 +17,7 @@ export const Card: FC<PropsWithChildren<CardProps>> = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className={`${styles.card} ${className ?? ''}`}>{children}</div>;
+      <div className={`${styles.card} ${className ?? ''}`}>{children}</div>
     </motion.div>
   );
 };

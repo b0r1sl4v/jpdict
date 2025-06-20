@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
 import './styles/globals.css';
+import '@gravity-ui/uikit/styles/fonts.css';
+import '@gravity-ui/uikit/styles/styles.css';
 import { ThemeProvider } from './ui/ThemeProvider';
 
 export const metadata: Metadata = {

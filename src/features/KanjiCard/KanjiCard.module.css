@@ -1,0 +1,44 @@
+.main {
+  display: flex;
+  gap: 30px;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 150px;
+}
+
+.markers {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style-type: none;
+}
+
+.secondary {
+  width: 400px;
+}
+
+.relatedKanji {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+}
+
+.parts {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.radical,
+.part {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+  max-width: 150px;
+  /* gap: 10px; */
+}
